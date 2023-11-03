@@ -1,0 +1,5 @@
+{
+    "response": "success",
+    "html": "<h2>Can I tally your router info?<\/h2>\n            <p>For aggregated statistical purposes <b>only<\/b>, I have created a page that shows which browsers and firmware variants are using YAMon - see <a href='https:\/\/usage-monitoring.com\/router-tally.php'>Router & Firmware Tallies<\/a>.  I would like to add your info to these numbers.<\/p><p>Rather than sending it silently in the background, I'm asking now if you be willing to share your installed date, router and firmware information (router: Newifi-D2 d-team,newifi-d2 \/ firmware: OpenWrt SNAPSHOT r0-a3e4949  ).<\/p><p>Your information will be collected anonymously and I will not pester you about this again: <label class='btn' for='sh-y' title='Yes, please include me'><input type='radio' name='shri' id='sh-y'> Yes<\/label>&nbsp;&nbsp;&nbsp;<label for='sh-n' class='btn'><input type='radio' name='shri' id='sh-n' title='No, do not tally my info'> No<\/label><\/p>",
+    "uid": "cc4da3334b4e631010c20bf5b92e455d"
+}

@@ -1,0 +1,11 @@
+Nov 3: if a MAc not in users.js
+util4.0.js
+    function byGN(a,b) {
+        	if a b empty retur -1 or 1
+    }
+
+yamon4.0.js
+    Object.keys(monthly).sort(byGN).forEach(function(k){
+        if (devices[k] == undefined) { return }
+        ...
+    }
