@@ -22,6 +22,7 @@ var monthlyDataCap=null,g_nobwCap
 var g_Settings={}, g_IPii={}, g_Restrictions={}, g_SortedCIDR=[]
 var bDevicesChanged=true
 var devices=[],names=[],monthly=[],hourly=[],hourly_totals={},corrections=[],interfaces={},p_pnd_d=0,p_pnd_u=0,p_dropped=0,p_local=0,o_sut,hourlyloads=[],live=[]
+var hourly_conn=[], hourly_conn_totals={}
 var monthly_totals
 var pnd_data={'start':{'down':0,'up':0},'total':{'down':0,'up':0,'dropped':0,'local':0,'lost':0},'usage':[]}
 var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
@@ -578,6 +579,68 @@ function loadHourly(cleardata){
 	})
  	return deferred.promise()
 }
+
+function loadHourlyConn(){
+	var deferred = $.Deferred()
+	deferred.resolve()
+
+	var cm=$('#SystemTotalsTable .currentSummary').attr('id'),cleardata=true
+	$('#myAlert,.alert-icon').fadeOut('slow')
+	setReportDates(cm)
+
+	$('.loaded').removeClass('loaded')
+
+	if ($('.not-viewed').length==0) $('#myAlert,.alert-icon').fadeOut('slow').removeClass('viewed')
+	pnd_data={'start':{'down':0,'up':0},'total':{'down':0,'up':0,'dropped':0,'local':0,'lost':0},'usage':[]}
+	hourlyloads=[]
+	o_sut=null
+	$('.current-date').text(formattedDate(_cr_Date))
+	$('.loaded').removeClass('loaded')
+
+	var dn=_cr_Date.getDate()*1, da=twod(dn)
+	var mo=twod(_cr_Date.getMonth()-(-1))
+	var yr=_cr_Date.getFullYear()
+	$('#monthly-tab-date').text(months[_cr_Date.getMonth()])
+
+	var cmo=_rs_Date.getMonth()*1
+	if(_rs_Date.getDate()!=_ispBillingDay)cmo--
+	var rm=twod(cmo+1)
+	$('#daily-tab-date').text(da)
+	$('#daily-conn-tab-date').text(da)
+	var ryr=_rs_Date.getFullYear()
+	var dp=_wwwData+(_organizeData==0?'':(_organizeData==1?ryr+'/':ryr+'/'+rm+'/'))
+	var datafile=dp+'hourly_'+yr+'-'+mo+'-'+da+'.js'
+
+	var today=new Date()
+	var isToday=_cr_Date.toDateString()==today.toDateString()
+	if(isToday){
+		if(_unlimited_usage=='0'){
+			Object.keys(monthly).forEach(function(k){
+				monthly[k].usage[dn]={down:0,up:0}
+			})
+			Object.keys(names).forEach(function(k){
+				names[k].usage[dn]={down:0,up:0}
+			})
+		}
+		else{
+			Object.keys(monthly).forEach(function(k){
+				monthly[k].usage[dn]={down:0,up:0,ul_down:0,ul_up:0}
+			})
+			Object.keys(names).forEach(function(k){
+				names[k].usage[dn]={down:0,up:0,ul_down:0,ul_up:0}
+			})
+		}
+	}
+	hourly_totals.down=0
+	hourly_totals.up=0
+	showLoading('Hourly data for ' + yr+'-'+mo+'-'+da)
+
+	if(!monthly_totals.usage[dn]) monthly_totals.usage[dn]={down:0,up:0,ul_down:0,ul_up:0}
+
+
+	return deferred.promise()
+}
+
 function loadView(cleardata){
 	$('.current-interval').addClass('loading')
 	var cvs=$('.selected').attr('id'),cs=$('#'+cvs+'-section')
@@ -646,6 +709,7 @@ function loadView(cleardata){
 	$('.nDBtn').first().clone(true, true).appendTo('#daily-tab-section .graphdiv')
 
 }
+
 function updateGraphs(cvs){
 	switch(cvs){
 		case 'summary-tab':
@@ -667,6 +731,7 @@ function updateGraphs(cvs){
 			break;
 	}
 }
+
 //----------- loadDevices -------------
 function ud_a(arr){
 	var mac=arr.mac.toLowerCase()+(!arr.key?'':('-'+arr.key))

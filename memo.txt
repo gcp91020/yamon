@@ -9,3 +9,31 @@ yamon4.0.js
         if (devices[k] == undefined) { return }
         ...
     }
+
+when loadDevices executing users.js
+mac2group
+information saved in devices
+
+when loadHourly executing hourly_x.js
+function hourlyData4
+function Totals
+
+
+format of hourly_conn_x.js
+
+var hourly_conn_created=""
+var hourly_conn_updated=""
+
+// Hour: 00
+function({ "id":mac-ip, "hour":hour, "connection": conn })
+
+function
+
+load the data to hourly_conn
+calculate hourly_conn_totals
+get id
+get ip
+
+
+
+
