@@ -96,5 +96,7 @@ git push origin main
 # copy files
 # edit .gitignore .idea .DS_Store .git
 # git add --all
-# git commit -a
+# git commit -m "updated"
 # git push -u origin main
+
+# git checkout -b master
