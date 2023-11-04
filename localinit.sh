@@ -31,7 +31,7 @@ if [ ! -f .git/config ]; then
 	if [ -z $input ]; then 
 		clone=Y 
 	fi
-	if [[ $input =~ "^[Yy].*" ]]; then 
+	if [[ "$input" =~ ^[Yy].* ]]; then
 		clone=Y	
 	fi
 	if [[ $clone == "Y" ]]; then
@@ -66,6 +66,7 @@ git rm .gitignore
 find "${baseDir}"/ -name  ".DS_Store" -delete
 find ./ -name  ".DS_Store" -delete
 git commit -a
+git commit -m "update"
 git push origin main
 "
 
