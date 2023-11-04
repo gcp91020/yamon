@@ -38,8 +38,8 @@ if [ ! -f .git/config ]; then
 		git init
 		git config --global user.name "gcp91020"
 		git config --global user.email "gcp91020@gmail.com"
-		git remote add origin git@github.com:gcp91020/yamon.git
-		git pull origin main
+		git remote add yamon git@github.com:gcp91020/yamon.git
+		git pull yamon main
 		[ ! -d webroot ] && mkdir webroot
 		[ ! -f yamon ] && ln -s webroot yamon
 		[ ! -d data ] && mkdir data
@@ -66,8 +66,8 @@ git rm .gitignore
 find "${baseDir}"/ -name  ".DS_Store" -delete
 find ./ -name  ".DS_Store" -delete
 git commit -a
-git commit -m "update"
-git push origin main
+git commit -m \"update\"
+git push yamon main
 "
 
 
