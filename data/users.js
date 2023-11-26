@@ -1,6 +1,6 @@
 var users_version="4.0.7"
 var users_created="2022-07-26 17:12:32"
-var users_updated="2023-11-24 06:18:34"
+var users_updated="2023-11-25 06:18:35"
 //MAC -> Groups
 mac2group({ "mac":"9c:3e:53:87:50:1b", "group":"Unknown" })
 mac2group({ "mac":"20:76:93:60:02:20", "group":"Interfaces" })
@@ -28,7 +28,7 @@ mac2group({ "mac":"20:76:93:50:02:15", "group":"Interfaces" })
 mac2group({ "mac":"20:76:93:50:02:13", "group":"Interfaces" })
 
 //MAC -> IP
-mac2ip({ "id":"20:76:93:60:02:15-10.249.48.251", "name":"wan", "active":"1", "added":"2023-11-24 06:18:34", "updated":"" })
+mac2ip({ "id":"20:76:93:60:02:15-10.249.49.0", "name":"wan", "active":"1", "added":"2023-11-25 06:18:35", "updated":"" })
 mac2ip({ "id":"00:10:db:ff:10:02-10.249.48.1", "name":"New Device-01", "active":"1", "added":"2023-10-30 21:18:42", "updated":"" })
 mac2ip({ "id":"20:76:93:60:02:20-192.168.127.217", "name":"lan3", "active":"1", "added":"2023-11-24 06:18:34", "updated":"" })
 mac2ip({ "id":"be:0f:73:3f:ab:40-192.168.127.218", "name":"ibm-x301", "active":"1", "added":"2023-11-23 23:10:01", "updated":"" })
@@ -42,20 +42,9 @@ mac2ip({ "id":"20:76:93:60:02:13-192.168.128.216", "name":"lan3", "active":"1", 
 mac2ip({ "id":"3c:06:30:26:9d:cd-192.168.50.3", "name":"New Device-03", "active":"1", "added":"2023-11-15 10:30:14", "updated":"" })
 mac2ip({ "id":"04:42:1a:19:52:a0-192.168.50.1", "name":"New Device-02", "active":"1", "added":"2023-11-15 10:30:14", "updated":"" })
 mac2ip({ "id":"20:76:93:60:02:13-192.168.50.101", "name":"lan1", "active":"1", "added":"2023-11-15 10:30:04", "updated":"" })
-
 mac2ip({ "id":"be:0f:73:3f:ab:40-fe80::bc0f:73ff:fe3f:ab40", "name":"ibm-x301", "active":"1", "added":"2023-11-14 16:30:01", "updated":"" })
-
-
 mac2ip({ "id":"be:0f:73:3f:ab:40-192.168.128.232", "name":"ibm-x301", "active":"1", "added":"2023-11-13 16:10:02", "updated":"" })
 mac2ip({ "id":"00:e0:4c:68:05:b3-192.168.128.196", "name":"*", "active":"1", "added":"2023-11-13 15:34:15", "updated":"" })
-
-
-
-
-
-
-
-
 mac2ip({ "id":"66:bb:89:25:0c:21-fe80::85b:d664:9edf:e3c7", "name":"iPhone-Yong", "active":"1", "added":"2023-10-27 16:10:02", "updated":"" })
 mac2ip({ "id":"66:b2:42:39:d4:2d-fe80::64b2:42ff:fe39:d42d", "name":"lenovo", "active":"1", "added":"2023-10-16 20:27:12", "updated":"" })
 mac2ip({ "id":"66:b2:42:39:d4:2d-fdb3:4350:a8d1::a87", "name":"lenovo", "active":"0", "added":"2023-10-16 20:23:43", "updated":"" })

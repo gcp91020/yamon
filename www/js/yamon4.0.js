@@ -1894,6 +1894,17 @@ function hourlyData4(arr){
 	hourly[mac].usage[hr]={down:1*traff[0]||0,up:1*traff[1]||0,ul_down:1*traff[2]||0,ul_up:1*traff[3]||0}
 }
 
+function hourlyConnData(arr){ 
+	//hourlyConnData({"id":"0a:1c:79:d8:54:14-192.168.120.217", "hour":"18", "minute":"48", "conns":19})
+	var id=arr.id.split('-'), mac=id[0].toLowerCase(), ip=id[1], hr=1*arr.hour, min1=1*arr.minute, conns=arr.conns
+	if (!hourly[mac]) hourly[mac]={down:0,up:0,ul_down:0,ul_up:0,usage:{}}
+	hourly[mac].down+=1*traff[0]||0
+	hourly[mac].up+=1*traff[1]||0
+	hourly[mac].ul_down+=1*traff[2]||0
+	hourly[mac].ul_up+=1*traff[3]||0
+	hourly[mac].usage[hr]={down:1*traff[0]||0,up:1*traff[1]||0,ul_down:1*traff[2]||0,ul_up:1*traff[3]||0}
+}
+
 function drawSummaryGauges(du, mem){
 	var du=(du.replace('%','')*1)
 	var m=mem.split(',')

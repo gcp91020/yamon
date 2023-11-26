@@ -1,3 +1,38 @@
+Nov 4:
+format of hourly_conn_x.js
+
+mac2conn({"id":mac-ip, "hour":hour, "connection":conn})
+
+
+var hourly_conn_created=""
+var hourly_conn_updated=""
+
+// Hour: 00
+function({ "id":mac-ip, "hour":hour, "connection": conn })
+
+function
+
+load the data to hourly_conn
+calculate hourly_conn_totals
+get id
+get ip
+
+三种文件
+connection max
+
+详细
+minute_conn_2023-11-09_10.js
+小时
+hourly_conn_2023-11-09.js
+天
+daily_conn_summary.js
+
+format:
+minuteData({ "id":"66:bb:89:25:0c:21-192.168.128.206", "hour":"11", "minute":"11", "connection":"10" })
+hourlyData4({ "id":"66:bb:89:25:0c:21-192.168.128.206", "hour":"11", "connection_max":"10", "connection_total":"20" })
+dailyData("id":"66:bb:89:25:0c:21-192.168.128.206", "day":"11", "connection_max":"10", "connection_total":"10" }))
+
+
 Nov 3: if a MAc not in users.js
 util4.0.js
     function byGN(a,b) {
@@ -17,23 +52,5 @@ information saved in devices
 when loadHourly executing hourly_x.js
 function hourlyData4
 function Totals
-
-
-format of hourly_conn_x.js
-
-var hourly_conn_created=""
-var hourly_conn_updated=""
-
-// Hour: 00
-function({ "id":mac-ip, "hour":hour, "connection": conn })
-
-function
-
-load the data to hourly_conn
-calculate hourly_conn_totals
-get id
-get ip
-
-
 
 

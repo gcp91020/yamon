@@ -96,8 +96,9 @@ git push yamon main
 #git branch -M main
 # copy files
 # edit .gitignore .idea .DS_Store .git
+# git add data
 # git add --all
 # git commit -m "updated"
-# git push -u origin main
+# git push -u yamon main
 
 # git checkout -b master
