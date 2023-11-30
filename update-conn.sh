@@ -86,7 +86,7 @@ CurrentConnections_1()
 
 	local date_f=""
 	while true
-	do		
+	do
 		[ -z "$ipt" ] && break
 		fl=$(echo -e "$ipt" | head -n 1)
 		[ -z "$fl" ] && break
@@ -106,28 +106,28 @@ CurrentConnections_1()
 
 			local ip_livefile=${hourly_conn_live_file_path/ip/${ip_f}}
 			#XY todo: get connctions from ddd
-			
+
 			# local conn_records=$(echo -e "$ddd" | grep "$ip" | ${grep_ignore_ips})
 			local conn_records=$(echo -e "$ddd" | grep "\"$ip\"" | grep -v -E $ignore_ip | awk -F "[,\[\" ]"  '{print $3" "$10}' | sort | uniq -c)
 			if [ -n "$conn_records" ]; then
 				[ ! -f $ip_livefile ] && touch $ip_livefile
 				[ ! -f $ip_livefile ] && touch $hourly_conn_file
-				echo -e "\n# \"$mac-$ip\" $(date +\"%Y-%m-%d-%H:%M\")" >> $ip_livefile				
+				echo -e "\n# \"$mac-$ip\" $(date +\"%Y-%m-%d-%H:%M\")" >> $ip_livefile
 				if [ -z "$date_f" ]; then
 					echo -e "\n# $(date +\"%Y-%m-%d-%H:%M\")" >> $hourly_conn_file
 					date_f="1"
 				fi
 
-				local err=$(echo "${conn_records%,}" 2>&1 1>> $ip_livefile)	
+				local err=$(echo "${conn_records%,}" 2>&1 1>> $ip_livefile)
 
 				# local ldata=$(echo -e "${conn_records%,} | awk -F "[,\[\" ]"  '{print $3" "$6" "$10}' | sort | uniq -c")
 				# local err=$(echo -e $ldata 2>&1 1>> $ip_livefile)
 				[ -n "$err" ] && Send2Log "ERROR >>> doliveUpdates:  $(IndentList "$err")" 3
-				
+
 				local amount=$(echo "${conn_records%,}" | wc -l)
 				err=$(echo -e "hourlyConnData({\"id\":\"$mac-$ip\", \"hour\":\"$hour\", \"minute\":\"$minute\", \"conns\":\"$amount\"})" 2>&1 1>> $hourly_conn_file)
 
-				Send2Log "$err" 2
+				[ -n "$err" ] && Send2Log "$err" 2
 
 				# [ -n "$err" ] && Send2Log "ERROR >>> doliveconnUpdates:  $(IndentList "$err")" 3
 				# Send2Log "curr_connections >>>\n$ddd" 0
@@ -135,7 +135,7 @@ CurrentConnections_1()
 
 			# local conn_records=$(echo -e "$ddd" | grep "$ip")
 			ipt=$(echo -e "$ipt" | grep -v "$tip")
-			
+
 		fi
 	done
 
@@ -145,6 +145,5 @@ CurrentConnections_1()
 doCurrConnections=CurrentConnections_1
 $doCurrConnections
 
-LogEndOfFunction
-
+#LogEndOfFunction
 

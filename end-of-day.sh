@@ -16,7 +16,7 @@
 #
 ##########################################################################
 
-DeactiveIdleDevices(){
+DeactiveIdleDevices_o(){
 	local _activeIPs=$(cat "$_usersFile" | grep -e "^mac2ip({.*})$" | grep '"active":"1"')
 	local lastseen=''
 	[ -f "$_lastSeenFile" ] && lastseen=$(cat "$_lastSeenFile" | grep -e "^lastseen({.*})$")
@@ -27,25 +27,13 @@ DeactiveIdleDevices(){
 		[ -z "$line" ] && continue
 		local id=$(GetField "$line" 'id')
 		local ls=$(GetField "$(echo "$lastseen" | grep "$id")" 'last-seen')
-
 		#ToDo - add a check for last-seen more than 30 days old
-
 		if [ -z "$ls" ] ; then
 			newline=$(echo "${line/\"active\":\"1\"/\"active\":\"0\"}")
 			sed -i "s~$line~$newline~" "$_usersFile"
 			#To Do... cull the inactive entries from iptables?!?
 			Send2Log "DeactiveIdleDevices: $id set to inactive (based upon users.js)" 1
 			local changes1=1
-		else
-			#XY - remove 7 days
-			local curepoch=$(date +"%s")
-			local updated=$(date $ls +"%s")
-			if [ $(( curepoch-updated > 7*24*3600 )) ]; then
-				newline=$(echo "${line/\"active\":\"1\"/\"active\":\"0\"}")	
-				sed -i "s~$line~$newline~" "$_usersFile"
-				Send2Log "DeactiveIdleDevices: $id set to inactive (based upon users.js)" 1
-				local changes1=1
-			fi
 		fi
 	done
 	[ -z "$changes1" ] && Send2Log "DeactiveIdleDevices: no active devices deactivated" 
@@ -57,9 +45,7 @@ DeactiveIdleDevices(){
 	do
 		[ -z "$line" ] && continue
 		local id=$(GetField "$line" 'id')
-		id=${id/-/\\-}
-		local wl=$(echo "$_inActiveIPs" | grep "$id" | head -n 1)
-		#local wl=$(echo "$_inActiveIPs" | grep "$id")
+		local wl=$(echo "$_inActiveIPs" | grep "$id")
 		if [ -n "$wl" ] ; then
 			newline=$(echo "${wl/\"active\":\"0\"/\"active\":\"1\"}")
 			sed -i "s~$wl~$newline~" "$_usersFile"
@@ -95,3 +81,4 @@ rm $(find "$tmplog" | grep "$_ds") #delete the date specific files
 DeactiveIdleDevices
 
 LogEndOfFunction
+

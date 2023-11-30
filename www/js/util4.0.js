@@ -1826,6 +1826,7 @@ function zeroMonthlyTotals(){
 function updateRow(did,arr){
 	if(arr[0][1]+arr[1][1]>0)$(did).removeClass('clear').slideDown('slow')
 	arr.forEach(function(i){
+		console.log(did+i[0],i[1])
 		updateValue(did+i[0],i[1])
 	})
 }

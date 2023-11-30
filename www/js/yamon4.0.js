@@ -429,7 +429,6 @@ function loadHourly(cleardata){
 			}
 			//console.log( devices )
 			Object.keys(hourly).forEach(function(k){
-				//console.log(k, devices[k] )
 				if(!monthly[k]){
 					if(_unlimited_usage=='0'){
 						monthly[k]={usage:[],down:0,up:0}
@@ -441,14 +440,19 @@ function loadHourly(cleardata){
 				}
 				monthly[k].usage[dn].down+=hourly[k].down
 				monthly[k].usage[dn].up+=hourly[k].up
+
+				if (!(k in devices)) {				
+					devices[k]={active:"0",added:"",cg:"Unknown",cn:"Unknown",color:"",group:"Unknown",name:"Removed",id:"100000000000",ip:["255.255.255.255"],updated:""}
+				}
 				var gn=devices[k].cg
+
 				if(!names[gn]){
 					var n=Object.keys(names).length
 					if(_unlimited_usage=='0'){
-						names[gn]={n:n,group:devices[k].group,down:0,up:0,usage:[]}
+						names[gn]={n:n,group:gn,down:0,up:0,usage:[]}
 					}
 					else{
-						names[gn]={n:n,group:devices[k].group,down:0,up:0,ul_down:0,ul_up:0,usage:[]}
+						names[gn]={n:n,group:gn,down:0,up:0,ul_down:0,ul_up:0,usage:[]}
 					}
 				}
 				if(!names[gn].usage[dn]){
