@@ -4,6 +4,14 @@
 baseDir=$(pwd)
 echo $baseDir
 
+if [ "$baseDir"=="/Users/yxiao/Temp" ]; then
+	if [ ! -d /Users/yxiao/Temp/yamon ]; then
+		mkdir /Users/yxiao/Temp/yamon
+	fi
+fi
+
+cd /Users/yxiao/Temp/yamon
+
 function generate_data(){
 	_date=$(date +"%Y/%m")
 	[ ! -d "${baseDir}/data/${_date}" ] && mkdir -p "${baseDir}/data/${_date}"
@@ -78,27 +86,29 @@ git push yamon main
 #	https://github.com/settings/keys
 #
 
-#git init
-#git remote add origin git@github.com:gcp91020/yamon.git
-#git pull origin main
+# git init
+# git remote add origin git@github.com:gcp91020/yamon.git
+# git pull origin main
 
-#git add localinit.sh
-#git commit -a
-#git push origin main
+# git add localinit.sh
+# git commit -a
+# git push origin main
 # edit username and hostname
-#git config --global --edit 
-#git commit --amend --reset-author
+# git config --global --edit 
+# git commit --amend --reset-author
 
 #create a new repository
 
-#git init
-#git remote add origin git@github.com:gcp91020/yamon.git
-#git branch -M main
+# git init
+# git remote add origin git@github.com:gcp91020/yamon.git
+# git branch -M main
 # copy files
-# edit .gitignore .idea .DS_Store .git
-# git add data
+# edit .gitignore .idea .DS_Store .git data
+# git add data xxx
 # git add --all
 # git commit -m "updated"
 # git push -u yamon main
 
 # git checkout -b master
+
+# python3 -m http.server
