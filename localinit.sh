@@ -4,9 +4,9 @@
 baseDir=$(pwd)
 echo $baseDir
 
-if [ "$baseDir"=="/Users/yxiao/Temp" ]; then
-	if [ ! -d /Users/yxiao/Temp/yamon ]; then
-		mkdir /Users/yxiao/Temp/yamon
+if [ "$baseDir"=="/Users/$USER/Temp" ]; then
+	if [ ! -d /Users/$USER/Temp/yamon ]; then
+		mkdir /Users/$USER/Temp/yamon
 	fi
 fi
 
